@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webapp1:
+    build: './code'
+    image: app_nodejs               #đặt tên cho cái image của mình sau khi build Dockerfile
+    container_name: node_app01      #Đặt tên cho container khi run container
+    ports:
+      - "3001:3000"
+  webapp2:
+    image: app_nodejs               #Sử dụng cái image mà mình vừa build ở trên
+    container_name: node_app02
+    depends_on:
+      - webapp1
+    ports:
+      - "3002:3000"
